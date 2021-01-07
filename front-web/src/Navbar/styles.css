@@ -1,6 +1,6 @@
 .main-navbar {
   height: 70px;
-  background: #DA5C5C;
+  background: var(--primary-color);
 
   padding-left: 45px;
   display: flex;
@@ -8,7 +8,7 @@
 }
 
 .logo-text{
-  color: #FFFFFF;
+  color: var(--light-color);
   
   font-weight: bold;
   font-size: 24px;
