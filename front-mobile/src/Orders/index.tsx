@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, StyleSheet, Text } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
 import { ScrollView, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
+import LottieView from 'lottie-react-native';
 
 import Header from '../Header';
 import OrderCard from '../OrderCard'
 import { fetchOrders } from '../api';
 import { Order } from '../types';
-import { isDayjs } from 'dayjs';
 
 export default function Orders() {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -39,7 +39,14 @@ export default function Orders() {
       <Header />
       <ScrollView style={styles.container}>
         {isLoading ? (
-          <Text>Buscando pedidos . . . </Text>
+          <View style={styles.loadingAnimationContainer}>
+            <LottieView 
+              style={styles.loadingAnimation}
+              source={require('./loadingAnimation.json')}
+              autoPlay
+              loop
+            />
+          </View>
         ) : (
           orders.map(order => (
             <TouchableWithoutFeedback 
@@ -60,4 +67,12 @@ const styles = StyleSheet.create({
     paddingRight: '5%',
     paddingLeft: '5%',
   },
+  loadingAnimationContainer : {
+    marginTop: '50%'
+  },
+  loadingAnimation: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#FFF',
+  }
 });
