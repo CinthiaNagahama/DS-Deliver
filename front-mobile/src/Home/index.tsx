@@ -1,14 +1,20 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 
-export default function Home() {
-  const handleOnPress = () => {
+import Header from '../Header';
 
+export default function Home() {
+  const navigation = useNavigation();
+
+  const handleOnPress = () => {
+    navigation.navigate('Orders');
   }
 
   return (
     <>
+      <Header/>
       <View style={styles.container}>
         <Image source={require('../assets/deliveryman.png')} style={styles.image}/>
         <Text style={styles.title}>
